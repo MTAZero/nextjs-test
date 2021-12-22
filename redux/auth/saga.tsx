@@ -18,7 +18,7 @@ function* saga_Login(action: any) {
         if (response.token) {
             let sessionKey = response.token;
             setLocalData('token', sessionKey);
-            const userInfo = response.user_info;
+            const userInfo = response.userInfo;
 
             // login success
             yield put(

@@ -13,6 +13,8 @@ export const LoginRequireComponent = (props: any) => {
     const router = useRouter();
 
     useEffect(() => {
+        dispatch(actions.AuthActions.checkSession());
+
         let url = router.asPath;
         const publicPaths = ['/login', '/register'];
         const path = url.split('?')[0];
@@ -22,10 +24,5 @@ export const LoginRequireComponent = (props: any) => {
         }
     }, [isLoggedIn]);
 
-    return (
-        <>
-            <h3>{isLoggedIn ? 'TRue' : 'False'}</h3>
-            {props.children}
-        </>
-    );
+    return <>{props.children}</>;
 };

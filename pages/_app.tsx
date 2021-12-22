@@ -7,7 +7,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 
 import { store } from '../redux/store';
 import { useActions } from '../redux';
-import { LoginRequireComponent } from '../components';
+import { LoginRequireComponent, RightBar } from '../components';
 import styles from '../styles/Home.module.css';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
@@ -17,16 +17,27 @@ const LayoutMain = (props: any) => {
     const actions = useActions();
 
     return (
-        <>
-            <button
-                onClick={() => {
-                    dispatch(actions.AuthActions.logout());
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'row',
+                // padding: 10,
+                flex: 1,
+                width: '100%'
+            }}
+        >
+            <RightBar />
+            <div
+                style={{
+                    display: 'flex',
+                    flex: 1,
+                    backgroundColor: '#f2f2f2',
+                    paddingLeft: 10
                 }}
             >
-                Logout
-            </button>
-            {props.children}
-        </>
+                {props.children}
+            </div>
+        </div>
     );
 };
 

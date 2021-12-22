@@ -5,27 +5,24 @@ import { useState } from 'react';
 import styles from '../styles/Register.module.scss';
 import { Formik } from 'formik';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const Register: NextPage = () => {
-    const registerUser = async (event: any) => {
-        event.preventDefault();
+    const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+    const router = useRouter();
 
-        const res = await fetch(
-            'https://hooks.zapier.com/hooks/catch/123456/abcde',
-            {
-                body: JSON.stringify({
-                    name: event.target.name.value,
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                method: 'POST',
+    if (isLoggedIn) {
+        const returnUrl: any = router.query.returnUrl || '/';
+        // router.push(returnUrl);
+
+        router.push({
+            pathname: returnUrl,
+            query: {
+                returnUrl: router.asPath,
             },
-        );
-
-        const result = await res.json();
-        // result.user => 'Ada Lovelace'
-    };
+        });
+    }
 
     return (
         <div className={styles.RegisterPage}>
@@ -72,7 +69,10 @@ const Register: NextPage = () => {
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
+                        alert(
+                            'Register success\n' +
+                                JSON.stringify(values, null, 2),
+                        );
                         setSubmitting(false);
                     }, 400);
                 }}
@@ -178,64 +178,6 @@ const Register: NextPage = () => {
                 )}
             </Formik>
         </div>
-    );
-
-    return (
-        <Formik
-            initialValues={{ email: '', password: '' }}
-            validate={(values) => {
-                const errors: any = {};
-                if (!values.email) {
-                    errors.email = 'Required';
-                } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                        values.email,
-                    )
-                ) {
-                    errors.email = 'Invalid email address';
-                }
-                return errors;
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                }, 400);
-            }}
-        >
-            {({
-                values,
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                isSubmitting,
-                /* and other goodies */
-            }) => (
-                <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                    />
-                    {errors.email && touched.email && errors.email}
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                    />
-                    {errors.password && touched.password && errors.password}
-                    <button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </button>
-                </form>
-            )}
-        </Formik>
     );
 };
 

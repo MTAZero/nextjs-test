@@ -19,7 +19,7 @@ const Login: NextPage = () => {
     let [password, setPassword] = useState('');
 
     if (isLoggedIn) {
-        const returnUrl: any = router.query.returnUrl || '';
+        const returnUrl: any = router.query.returnUrl || '/';
         // router.push(returnUrl);
 
         router.push({
