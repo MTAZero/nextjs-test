@@ -10,13 +10,15 @@ let posts = [
         content: `Allen, who left the clinic with plans to return again the next day.
         Even as the number of coronavirus cases is skyrocketing in some parts of the country, largely driven by the Omicron variant, the holiday travel rush appears unstoppable. On Friday, Los Angeles International Airport reported its busiest day since early 2020, and on Sunday, 2.1 million people passed through airports in the United States, nearly twice as many as at this time last year.`,
         num_like: 10,
+        image: 'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F5d35eacaf1176b0008974b54%2F0x0.jpg%3FcropX1%3D790%26cropX2%3D5350%26cropY1%3D784%26cropY2%3D3349'
     },
     {
         _id: '1',
         title: '',
         subtile: '',
         content: 'I miss you so much <3',
-        num_like: 20
+        num_like: 20,
+        image: 'https://i-giaitri.vnecdn.net/2021/02/14/phimLoveStoryI-1613271639-1823-1613271680_680x0.jpg'
     },
     {
         _id: '2',
@@ -28,6 +30,7 @@ let posts = [
         Two at-home tests — one Friday and one Saturday — came back negative. But Ms. Allen, 22, who is fully vaccinated but not yet boosted, wanted more official assurance before she rebooked her trip. On Sunday evening, long after her scheduled appointment at an urgent care clinic in Crown Heights, an employee told her and the 30 or so other people waiting for tests in the bitter cold that they’d have to come back at 8 a.m.
         “I really don’t want to put anyone in danger,” said Ms`,
         num_like: 10,
+        image: null
     },
 ];
 
@@ -63,6 +66,7 @@ export default function handler(
             subtitle,
             content,
             num_like: 0,
+            image: null
         };
 
         posts = [post, ...posts];

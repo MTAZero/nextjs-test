@@ -88,6 +88,13 @@ const Posts: NextPage = () => {
                         <div className={styles.Feed}>
                             {renderUserInfo()}
                             <div className={styles.FeedContent}>
+                                {post.image && (
+                                    <img
+                                        src={post.image}
+                                        className={styles.image}
+                                        alt="img"
+                                    />
+                                )}
                                 {post.content}
                             </div>
                             <div className={styles.FeedControl}>
