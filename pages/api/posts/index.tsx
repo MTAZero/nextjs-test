@@ -7,11 +7,26 @@ let posts = [
         title: 'Omicron and Holiday Travel: How to Strategize',
         subtitle:
             'Even as the variant surges, the seasonal travel rush seems unstoppable, but there are steps you can take to travel more responsibly and mitigate the health risks for yourself — and others.',
+        content: `Allen, who left the clinic with plans to return again the next day.
+        Even as the number of coronavirus cases is skyrocketing in some parts of the country, largely driven by the Omicron variant, the holiday travel rush appears unstoppable. On Friday, Los Angeles International Airport reported its busiest day since early 2020, and on Sunday, 2.1 million people passed through airports in the United States, nearly twice as many as at this time last year.`,
+        num_like: 10,
+    },
+    {
+        _id: '1',
+        title: '',
+        subtile: '',
+        content: 'I miss you so much <3',
+        num_like: 20
+    },
+    {
+        _id: '2',
+        title: 'Omicron and Holiday Travel: How to Strategize',
+        subtitle:
+            'Even as the variant surges, the seasonal travel rush seems unstoppable, but there are steps you can take to travel more responsibly and mitigate the health risks for yourself — and others.',
         content: `Taylor Allen wanted to be a responsible traveler, but she was finding it difficult.
         Late last week at least seven people Ms. Allen knew in Brooklyn posted on Instagram that they’d tested positive for the coronavirus. She had not seen any of them in person. But after developing an intense headache and runny nose on Friday, she canceled her Saturday morning flight to Jacksonville, Fla., where she was planning to see her parents and grandparents.
         Two at-home tests — one Friday and one Saturday — came back negative. But Ms. Allen, 22, who is fully vaccinated but not yet boosted, wanted more official assurance before she rebooked her trip. On Sunday evening, long after her scheduled appointment at an urgent care clinic in Crown Heights, an employee told her and the 30 or so other people waiting for tests in the bitter cold that they’d have to come back at 8 a.m.
-        “I really don’t want to put anyone in danger,” said Ms. Allen, who left the clinic with plans to return again the next day.
-        Even as the number of coronavirus cases is skyrocketing in some parts of the country, largely driven by the Omicron variant, the holiday travel rush appears unstoppable. On Friday, Los Angeles International Airport reported its busiest day since early 2020, and on Sunday, 2.1 million people passed through airports in the United States, nearly twice as many as at this time last year.`,
+        “I really don’t want to put anyone in danger,” said Ms`,
         num_like: 10,
     },
 ];

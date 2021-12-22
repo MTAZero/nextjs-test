@@ -1,0 +1,200 @@
+@keyframes fade {
+    0% {
+        color: transparent;
+    }
+    50% {
+        color: #e23b3b;
+    }
+    100% {
+        color: transparent;
+    }
+}
+
+@keyframes size {
+    0% {
+        padding: 10px 12px 8px;
+    }
+    50% {
+        padding: 14px 16px 12px;
+        margin-top: -4px;
+    }
+    100% {
+        padding: 10px 12px 8px;
+    }
+}
+
+.PostPage {
+    // background-color: pink;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    padding-left: 200px;
+    padding-right: 200px;
+    align-items: center;
+
+    .CreatePanel {
+        margin-bottom: 20px;
+        width: 450px;
+        background-color: white;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+
+        .MainContentArea {
+            display: flex;
+            background-color: #f2f2f2;
+            height: 60px;
+            margin-bottom: 10px;
+            border: none;
+
+            border-radius: 2px;
+            padding: 10px;
+        }
+
+        .MainContentArea:focus {
+            outline: none;
+        }
+
+        .ControlPanel {
+            margin-bottom: 10px;
+
+            .CreateButton {
+                background-color: #3399ff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 7px;
+                border-radius: 3px;
+
+                color: white;
+                cursor: pointer;
+            }
+
+            .CreateButton:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    .ListFeed {
+        width: 450px;
+        overflow: scroll;
+
+        .Feed {
+            margin-bottom: 10px;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            .FeedContent {
+                color: #777777;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .FeedControl {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                overflow: visible;
+
+                position: relative;
+
+                // padding:10px 12px 8px;
+
+                .LikeButton {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #f2f2f2;
+                    position: relative;
+
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 15px;
+
+                    animation: size 0.4s;
+
+                    overflow: visible;
+
+                    .IconButton {
+                        color: gray;
+                    }
+
+                    .textHide {
+                        position: absolute;
+                        bottom: 70px;
+                        left: 0;
+                        right: 0;
+                        display: none;
+                        transition: 0.6s;
+                        z-index: -1;
+                        font-size: 2px;
+                        color: transparent;
+                        font-weight: 400;
+                        animation: fade 1s;
+                    }
+
+                    
+                }
+
+                .LikeButton:active {
+                    height: 35px;
+                    width: 35px;
+                    border-radius: 18px;
+
+                    .IconButton:active {
+                        color: red;
+                    }
+
+                    .textHide {
+                        // position: absolute;
+                        // top: -10px;
+                        // bottom: 120px;
+                        // font-size: 14px;
+                        // display: block;
+                        // color: gray;
+
+                        bottom: 120px;
+                        font-size: 14px;
+                        visibility: visible;
+                        animation: fade 1s;
+                        z-index: 10;
+                    }
+                }
+
+                .num_like {
+                    margin-left: 5px;
+
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .userInfo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .userAvatar {
+            height: 46px;
+            width: 46px;
+            border-radius: 23px;
+        }
+
+        .userFullname {
+            color: black;
+            margin-left: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+}
