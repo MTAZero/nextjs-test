@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useActions } from '../redux';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Login.module.scss';
 
 const Login: NextPage = () => {
     const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
@@ -14,19 +14,77 @@ const Login: NextPage = () => {
     const dispatch = useDispatch();
     const actions = useActions();
 
-    let [username, setUsername] = useState('');
+    let [username, setUserName] = useState('');
     let [password, setPassword] = useState('');
 
-    if (isLoggedIn)
+    if (isLoggedIn) {
+        const returnUrl: any = router.query.returnUrl || '/';
+        // router.push(returnUrl);
+
         router.push({
-            pathname: '/',
+            pathname: returnUrl,
             query: {
                 returnUrl: router.asPath,
             },
         });
+    }
+
+    const _handleLogin = () => {
+        dispatch(actions.AuthActions.login(username, password));
+    };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.LoginPage}>
+            <div className={styles.LoginPanel}>
+
+                <div className={styles.RowInfo}>
+                    <div className={styles.RowInfoTitle}>Username</div>
+                    <div className={styles.RowInfoContent}>
+                        <input
+                            value={username}
+                            onChange={(e) => {
+                                setUserName(e.target.value);
+                            }}
+                            type="text"
+                            className={styles.RowInfoTextBox}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') _handleLogin();
+                            }}
+                        />
+                    </div>
+                </div>
+
+                <div className={styles.RowInfo}>
+                    <div className={styles.RowInfoTitle}>Password</div>
+                    <div className={styles.RowInfoContent}>
+                        <input
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                            }}
+                            type="password"
+                            className={styles.RowInfoTextBox}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') _handleLogin();
+                            }}
+                        />
+                    </div>
+                </div>
+
+                <div
+                    className={styles.ControlPanel}
+                    onClick={() => {
+                        _handleLogin();
+                    }}
+                >
+                    <div className={styles.Button}>Login</div>
+                </div>
+            </div>
+        </div>
+    )
+
+    return (
+        <div className={styles.Main}>
             <Head>
                 <title>Create Next App</title>
                 <meta
@@ -41,11 +99,13 @@ const Login: NextPage = () => {
                 type="text"
                 value={username}
                 onChange={(e) => {
-                    setUsername(e.target.value);
+                    setUserName(e.target.value);
                 }}
             />
 
-            <h3>Mật khẩu</h3>
+            <h3 className={styles.abc}>Mật khẩu
+                
+            </h3>
             <input
                 type="text"
                 value={password}

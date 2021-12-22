@@ -2,7 +2,7 @@ import { all, takeEvery, fork, put, select } from 'redux-saga/effects';
 import actions from './actions';
 
 // helper
-import { APIService, setLocalData } from '../../utils';
+import { APIService, setLocalData, NotificationsService } from '../../utils';
 
 function* saga_Login(action: any) {
     try {
@@ -32,7 +32,7 @@ function* saga_Login(action: any) {
             );
 
         } else {
-            // NotificationsService.error('Đăng nhập thất bại');
+            NotificationsService.error('Đăng nhập thất bại');
             // yield put(ChatActions.disconnectGateway());
         }
     } catch (ex: any) {
@@ -48,10 +48,10 @@ function* saga_Login(action: any) {
             }),
         );
 
-        // NotificationsService.error(
-        //     'Tài khoản chưa chính xác',
-        //     'Đăng nhập thất bại',
-        // );
+        NotificationsService.error(
+            'Tài khoản chưa chính xác',
+            'Đăng nhập thất bại',
+        );
     }
 }
 

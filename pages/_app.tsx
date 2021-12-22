@@ -8,6 +8,9 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from '../redux/store';
 import { useActions } from '../redux';
 import { LoginRequireComponent } from '../components';
+import styles from '../styles/Home.module.css';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -20,15 +23,20 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
 
     return (
-        <Provider store={store}>
-            {isRequireLogin ? (
-                <LoginRequireComponent>
-                    <Component {...pageProps} />
-                </LoginRequireComponent>
-            ) : (
-                <Component {...pageProps} />
-            )}
-        </Provider>
+        <>
+            <ReactNotification />
+            <Provider store={store}>
+                <div className={styles.main}>
+                    {isRequireLogin ? (
+                        <LoginRequireComponent>
+                            <Component {...pageProps} />
+                        </LoginRequireComponent>
+                    ) : (
+                        <Component {...pageProps} />
+                    )}
+                </div>
+            </Provider>
+        </>
     );
 }
 
