@@ -37,9 +37,6 @@ const reducer = (state = initState, action: any) => {
         case actions.type.CHECK_SESSION:
             return state;
 
-        case actions.type.REGISTER:
-            return state 
-
         default:
             return state;
     }

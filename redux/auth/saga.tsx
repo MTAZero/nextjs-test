@@ -103,20 +103,11 @@ function* saga_CheckSessionKey() {
     }
 }
 
-function* saga_Register(action: any) {
-    try {
-    } catch (ex) {
-        NotificationsService.error('Register Error', '');
-    }
-}
-
 function* listen() {
     yield takeEvery(actions.type.LOGIN, saga_Login);
 
     yield takeEvery(actions.type.CHECK_SESSION, saga_CheckSessionKey);
     yield takeEvery(actions.type.LOGOUT, saga_Logout);
-
-    yield takeEvery(actions.type.REGISTER, saga_Register);
 }
 
 export default function* authSaga() {

@@ -1,10 +1,37 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useActions } from '../redux';
+import styles from '../styles/GetListNumber.module.scss';
+import { AiFillStar } from 'react-icons/ai';
 
 const GetNumbers: NextPage = () => {
+    const dispatch = useDispatch();
+    const actions = useActions();
+
+    const numbers = useSelector((state: any) => state.global.numbers);
+
+    useEffect(() => {
+        dispatch(actions.GlobalActions.getListNumbers());
+    }, []);
+
+    const renderNumBlock = (num: any) => {
+        let digits = [];
+        for (let index = 0; index < num.length; index++)
+            digits.push(num[index]);
+
+        return (
+            <div className={styles.NumBlock}>
+                {digits.map((digit: any, index: any) => {
+                    return <div className={styles.Digit}>{digit}</div>;
+                })}
+            </div>
+        );
+    };
+
     return (
-        <div className={styles.container}>
+        <div className={styles.GetListNumber}>
             <Head>
                 <title>Get Numbers Page</title>
                 <meta
@@ -14,7 +41,55 @@ const GetNumbers: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h3>GetNumber Page</h3>
+            <div className={styles.MainTable}>
+                {/* {
+                    numbers.secondNum && numbers.secondNum[0]
+                } */}
+                <div className={styles.rowTitle}>
+                    <div className={styles.title}>XSKT Vietlott, 17/12/21</div>
+                    <AiFillStar className={styles.star} />
+                </div>
+
+                <div className={styles.BlockNumber}>
+                    <div className={styles.BlockTitle}>1st Prize</div>
+                    <div className={styles.BlockContent}>
+                        {numbers.firstNum &&
+                            numbers.firstNum.map((num: any, index: any) => {
+                                return renderNumBlock(num);
+                            })}
+                    </div>
+                </div>
+
+                <div className={styles.BlockNumber}>
+                    <div className={styles.BlockTitle}>2nd Prize</div>
+                    <div className={styles.BlockContent}>
+                        {numbers.secondNum &&
+                            numbers.secondNum.map((num: any, index: any) => {
+                                return renderNumBlock(num);
+                            })}
+                    </div>
+                </div>
+
+                <div className={styles.BlockNumber}>
+                    <div className={styles.BlockTitle}>3rd Prize</div>
+                    <div className={styles.BlockContent}>
+                        {numbers.thirdNum &&
+                            numbers.thirdNum.map((num: any, index: any) => {
+                                return renderNumBlock(num);
+                            })}
+                    </div>
+                </div>
+
+                <div className={styles.BlockNumber}>
+                    <div className={styles.BlockTitle}>Consolation prize</div>
+                    <div className={styles.BlockContent}>
+                        {numbers.encourageNum &&
+                            numbers.encourageNum.map((num: any, index: any) => {
+                                return renderNumBlock(num);
+                            })}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
