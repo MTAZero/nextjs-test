@@ -30,7 +30,6 @@ function* saga_Login(action: any) {
                     current_user_info: userInfo,
                 }),
             );
-
         } else {
             NotificationsService.error('Login error');
             // yield put(ChatActions.disconnectGateway());
@@ -58,11 +57,7 @@ function* saga_Login(action: any) {
 function* saga_Logout() {
     try {
         setLocalData('token', null);
-        NotificationsService.success(
-            'Logout success',
-            'Goodbye',
-            'top-center',
-        );
+        NotificationsService.success('Logout success', 'Goodbye', 'top-center');
 
         // yield put(
         //     actions.action.resetState()
@@ -108,12 +103,20 @@ function* saga_CheckSessionKey() {
     }
 }
 
+function* saga_Register(action: any) {
+    try {
+    } catch (ex) {
+        NotificationsService.error('Register Error', '');
+    }
+}
 
 function* listen() {
     yield takeEvery(actions.type.LOGIN, saga_Login);
 
     yield takeEvery(actions.type.CHECK_SESSION, saga_CheckSessionKey);
     yield takeEvery(actions.type.LOGOUT, saga_Logout);
+
+    yield takeEvery(actions.type.REGISTER, saga_Register);
 }
 
 export default function* authSaga() {

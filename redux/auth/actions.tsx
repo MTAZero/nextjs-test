@@ -1,4 +1,4 @@
-const prefix = 'auth/'
+const prefix = 'auth/';
 
 const type = {
     UPDATE_STATE: prefix + 'update_state',
@@ -8,59 +8,63 @@ const type = {
 
     CHECK_SESSION: prefix + 'check_session',
 
-    RESET_STATE: prefix + 'reset_state'
-}
+    RESET_STATE: prefix + 'reset_state',
+
+    REGISTER: prefix + 'register'
+};
 
 const action = {
     updateState: (state = {}) => {
         return {
             type: type.UPDATE_STATE,
             payload: {
-                state
-            }
-        }
+                state,
+            },
+        };
     },
 
-    login: (username = "", password = "") => {
+    login: (username = '', password = '') => {
         return {
             type: type.LOGIN,
             payload: {
                 username,
-                password
-            }
-        }
+                password,
+            },
+        };
     },
     logout: () => {
         return {
             type: type.LOGOUT,
-            payload: {
-
-            }
-        }
+            payload: {},
+        };
     },
 
     checkSession: () => {
         return {
             type: type.CHECK_SESSION,
-            payload: {
-                
-            }
-        }
+            payload: {},
+        };
     },
 
     resetState: () => {
         return {
             type: type.RESET_STATE,
-            payload: {
-                
-            }
-        }
-    }
-}
+            payload: {},
+        };
+    },
 
-export const AuthActions = action
+    // register
+    register: () => {
+        return {
+            type: type.REGISTER,
+            payload: {},
+        };
+    }
+};
+
+export const AuthActions = action;
 
 export default {
     type,
-    action
-}
+    action,
+};
