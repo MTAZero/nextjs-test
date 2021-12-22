@@ -16,24 +16,16 @@ export const LoginRequireComponent = (props: any) => {
         let url = router.asPath;
         const publicPaths = ['/login', '/register'];
         const path = url.split('?')[0];
+
         if (!isLoggedIn && !publicPaths.includes(path)) {
-            router.push({
-                pathname: '/login',
-                query: { returnUrl: router.asPath },
-            });
-        } 
+            router.push(`/login?returnUrl=${router.pathname}`);
+        }
     }, [isLoggedIn]);
 
     return (
         <>
-            <h3>
-                {
-                    isLoggedIn ? "TRue" : "False"
-                }
-            </h3>
-            {
-                props.children
-            }
+            <h3>{isLoggedIn ? 'TRue' : 'False'}</h3>
+            {props.children}
         </>
     );
 };

@@ -32,7 +32,7 @@ function* saga_Login(action: any) {
             );
 
         } else {
-            NotificationsService.error('Đăng nhập thất bại');
+            NotificationsService.error('Login error');
             // yield put(ChatActions.disconnectGateway());
         }
     } catch (ex: any) {
@@ -49,8 +49,8 @@ function* saga_Login(action: any) {
         );
 
         NotificationsService.error(
-            'Tài khoản chưa chính xác',
-            'Đăng nhập thất bại',
+            'Username or password is not correct',
+            'Login error',
         );
     }
 }
@@ -58,11 +58,11 @@ function* saga_Login(action: any) {
 function* saga_Logout() {
     try {
         setLocalData('token', null);
-        // NotificationsService.success(
-        //     'Đăng xuất thành công',
-        //     'Tạm biệt',
-        //     'top-center',
-        // );
+        NotificationsService.success(
+            'Logout success',
+            'Goodbye',
+            'top-center',
+        );
 
         // yield put(
         //     actions.action.resetState()
