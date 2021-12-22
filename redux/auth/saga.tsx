@@ -15,10 +15,10 @@ function* saga_Login(action: any) {
         let response: any = LoginResponse;
         response = response.data;
 
-        if (response.access_token) {
-            let sessionKey = response.access_token;
+        if (response.token) {
+            let sessionKey = response.token;
             setLocalData('token', sessionKey);
-            const userInfo = response.user;
+            const userInfo = response.user_info;
 
             // login success
             yield put(
@@ -64,9 +64,9 @@ function* saga_Logout() {
         //     'top-center',
         // );
 
-        yield put(
-            actions.action.resetState()
-        )
+        // yield put(
+        //     actions.action.resetState()
+        // )
 
         yield put(
             actions.action.updateState({

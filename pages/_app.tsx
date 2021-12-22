@@ -7,27 +7,27 @@ import { Provider, useDispatch, useSelector } from 'react-redux';
 
 import { store } from '../redux/store';
 import { useActions } from '../redux';
+import { LoginRequireComponent } from '../components';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const isLoggedIn = store.getState().auth.isLoggedIn;
     const router = useRouter();
-
-    useEffect(() => {
-        let url = router.asPath;
-        const publicPaths = ['/login', '/register'];
-        const path = url.split('?')[0];
-        if (!isLoggedIn && !publicPaths.includes(path)) {
-            router.push({
-                pathname: '/login',
-                query: { returnUrl: router.asPath },
-            });
-        }
-    }, [isLoggedIn]);
+    let isRequireLogin = true;
+    let url = router.asPath;
+    const publicPaths = ['/login', '/register'];
+    const path = url.split('?')[0];
+    if (publicPaths.includes(path)) {
+        isRequireLogin = false;
+    }
 
     return (
         <Provider store={store}>
-            <h3>{isLoggedIn ? 'True' : 'False'}</h3>
-            <Component {...pageProps} />
+            {isRequireLogin ? (
+                <LoginRequireComponent>
+                    <Component {...pageProps} />
+                </LoginRequireComponent>
+            ) : (
+                <Component {...pageProps} />
+            )}
         </Provider>
     );
 }

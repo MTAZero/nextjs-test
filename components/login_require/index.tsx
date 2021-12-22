@@ -1,60 +1,39 @@
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    Redirect,
-    useLocation,
-    Switch,
-    Route,
-} from 'react-router-dom';
-import { RouterLinks } from '../../const';
 // import { RouterLinks } from '../const';
 import { useActions } from '../../redux';
 
 export const LoginRequireComponent = (props: any) => {
     const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
-    const location = useLocation();
 
     const dispatch = useDispatch();
     const actions = useActions();
 
-    useEffect(() => {
-        dispatch(actions.AuthActions.checkSession());
-    });
+    const router = useRouter();
 
-    if (!isLoggedIn) {
-        if (props.redirect)
-            // return <Redirect to={props.redirect} from={location.pathname} />;
-            return (
-                <Redirect
-                    to={{
-                        pathname: props.redirect,
-                        state: {
-                            from: location.pathname,
-                        },
-                    }}
-                />
-            );
-        else
-            return (
-                <Redirect
-                    to={{
-                        pathname: RouterLinks.LOGIN_PAGE,
-                        state: {
-                            from: location.pathname,
-                        },
-                    }}
-                />
-            );
-    }
+    useEffect(() => {
+        let url = router.asPath;
+        const publicPaths = ['/login', '/register'];
+        const path = url.split('?')[0];
+        if (!isLoggedIn && !publicPaths.includes(path)) {
+            router.push({
+                pathname: '/login',
+                query: { returnUrl: router.asPath },
+            });
+        } 
+    }, [isLoggedIn]);
 
     return (
-        <Switch>
-            <Route
-                {...props}
-                onEnter={() => {
-                    // dispatch(actions.AuthActions.checkSession());
-                }}
-            />
-        </Switch>
+        <>
+            <h3>
+                {
+                    isLoggedIn ? "TRue" : "False"
+                }
+            </h3>
+            {
+                props.children
+            }
+        </>
     );
 };
