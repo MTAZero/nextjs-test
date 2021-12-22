@@ -7,43 +7,50 @@ const type = {
     LOAD_LIST_POSTS_SUCCESS: prefix + 'load_list_posts_success',
 
     CREATE_POST: prefix + 'create_post',
+    LIKE_POST: prefix + 'like_post',
 };
 
 const action = {
-
     updateState: (state: any) => {
         return {
             type: type.UPDATE_STATE,
             payload: {
-                state
-            }
-        }
+                state,
+            },
+        };
     },
 
     loadListPosts: () => {
         return {
             type: type.LOAD_LIST_POSTS,
-            payload: {}
-        }
+            payload: {},
+        };
     },
     loadListPostsSuccess: (posts = []) => {
         return {
             type: type.LOAD_LIST_POSTS_SUCCESS,
             payload: {
-                posts
-            }
-        }
+                posts,
+            },
+        };
     },
 
     createPost: (post: any = {}) => {
         return {
             type: type.CREATE_POST,
             payload: {
-                post
-            }
-        }
-    }
-
+                post,
+            },
+        };
+    },
+    likePost: (postId: any = {}) => {
+        return {
+            type: type.LIKE_POST,
+            payload: {
+                postId,
+            },
+        };
+    },
 };
 
 export const PostActions = action;

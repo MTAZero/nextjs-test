@@ -50,7 +50,7 @@ export default function handler(
             num_like: 0,
         };
 
-        posts = [...posts, post];
+        posts = [post, ...posts];
 
         return APIResponse(res, 200, posts, 'success');
     }

@@ -3,30 +3,25 @@ import createApiServices from './createApiServices';
 const api = createApiServices();
 
 // auth
-const GetListPosts = (uname = '', password = '') => {
-    const body = {
-        password: password,
-        username: uname,
-    };
+const GetListPosts = () => {
     return api.makeRequest({
-        url: 'auth/login',
+        url: 'posts',
+        method: 'GET',
+    });
+};
+
+const CreatePost = (post: any) => {
+    return api.makeAuthRequest({
+        url: 'posts',
         method: 'POST',
-        data: body,
+        data: post,
     });
 };
 
-const CreatePost = () => {
+const LikePost = (post_id: any = null) => {
     return api.makeAuthRequest({
-        url: 'auth/get-info',
-        method: 'GET',
-        data: {},
-    });
-};
-
-const LikePost = () => {
-    return api.makeAuthRequest({
-        url: 'auth/get-info',
-        method: 'GET',
+        url: `posts?post_id=${post_id}`,
+        method: 'PUT',
         data: {},
     });
 };

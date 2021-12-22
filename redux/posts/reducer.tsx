@@ -1,20 +1,18 @@
-import { getSessionKey } from "../../utils";
-import actions from "./actions";
+import { getSessionKey } from '../../utils';
+import actions from './actions';
 
 const default_user = {
     _id: null,
     title: '',
     content: '',
-    num_like: 0
+    num_like: 0,
 };
 
 const initState = {
-    posts: []
+    posts: [],
 };
 
 const reducer = (state = initState, action: any) => {
-
-
     switch (action.type) {
         case actions.type.UPDATE_STATE:
             return {
@@ -29,11 +27,14 @@ const reducer = (state = initState, action: any) => {
             return {
                 ...state,
                 ...{
-                    posts: action.payload.posts
-                }
+                    posts: action.payload.posts,
+                },
             };
 
         case actions.type.CREATE_POST:
+            return state;
+
+        case actions.type.LIKE_POST:
             return state;
 
         default:

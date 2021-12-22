@@ -1,8 +1,19 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useActions } from '../../redux';
 import styles from '../../styles/Home.module.css';
 
-const Home: NextPage = () => {
+const Posts: NextPage = () => {
+    const dispatch = useDispatch();
+    const posts = useSelector((state: any) => state.posts.posts);
+    const actions = useActions();
+
+    useEffect(() => {
+        dispatch(actions.PostActions.loadListPosts());
+    }, []);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -14,9 +25,16 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <h3>Post Page</h3>
+            {posts.map((post: any, index: any) => {
+                return (
+                    <div>
+                        <h3>{post.title}</h3>
+                        {post.content}
+                    </div>
+                );
+            })}
         </div>
     );
 };
 
-export default Home;
+export default Posts;
