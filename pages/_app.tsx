@@ -9,28 +9,24 @@ import { store } from '../redux/store';
 import { useActions } from '../redux';
 
 function MyApp({ Component, pageProps }: AppProps) {
-    // const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+    const isLoggedIn = store.getState().auth.isLoggedIn;
+    const router = useRouter();
 
-    // const dispatch = useDispatch();
-    // const actions = useActions();
-    // const router = useRouter();
-
-    // useEffect(() => {
-    //     dispatch(actions.AuthActions.checkSession());
-    // });
-
-    // let url = router.asPath;
-    // const publicPaths = ['/login'];
-    // const path = url.split('?')[0];
-    // if (!isLoggedIn && !publicPaths.includes(path)) {
-    //     router.push({
-    //         pathname: '/login',
-    //         query: { returnUrl: router.asPath },
-    //     });
-    // }
+    useEffect(() => {
+        let url = router.asPath;
+        const publicPaths = ['/login', '/register'];
+        const path = url.split('?')[0];
+        if (!isLoggedIn && !publicPaths.includes(path)) {
+            router.push({
+                pathname: '/login',
+                query: { returnUrl: router.asPath },
+            });
+        }
+    }, [isLoggedIn]);
 
     return (
         <Provider store={store}>
+            <h3>{isLoggedIn ? 'True' : 'False'}</h3>
             <Component {...pageProps} />
         </Provider>
     );

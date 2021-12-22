@@ -1,11 +1,21 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import styles from '../styles/Home.module.css';
 
 const Login: NextPage = () => {
     const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+    const router = useRouter();
+
+    if (isLoggedIn)
+        router.push({
+            pathname: '/register',
+            query: {
+                returnUrl: router.asPath,
+            },
+        });
 
     return (
         <div className={styles.container}>
@@ -19,7 +29,7 @@ const Login: NextPage = () => {
             </Head>
 
             <h1>Login Page</h1>
-            <h3>{isLoggedIn ? "True" : "False"}</h3>
+            <h3>{isLoggedIn ? 'True' : 'False'}</h3>
         </div>
     );
 };
