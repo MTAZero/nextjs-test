@@ -1,0 +1,121 @@
+import { all, takeEvery, fork, put, select } from 'redux-saga/effects';
+import actions from './actions';
+
+// helper
+import { APIService, setLocalData } from '../../utils';
+
+function* saga_Login(action: any) {
+    try {
+        const { username, password } = action.payload;
+
+        let LoginResponse: Promise<any> = yield APIService.Auth.login(
+            username,
+            password,
+        );
+        let response: any = LoginResponse;
+        response = response.data;
+
+        if (response.access_token) {
+            let sessionKey = response.access_token;
+            setLocalData('token', sessionKey);
+            const userInfo = response.user;
+
+            // login success
+            yield put(
+                actions.action.updateState({
+                    session_key: sessionKey,
+                    isLoggedIn: true,
+                    isLoading: false,
+                    userInfo,
+                    current_user_info: userInfo,
+                }),
+            );
+
+        } else {
+            // NotificationsService.error('Đăng nhập thất bại');
+            // yield put(ChatActions.disconnectGateway());
+        }
+    } catch (ex: any) {
+        console.log('[Auth] Login Error : ', ex.message);
+
+        // login error
+        yield put(
+            actions.action.updateState({
+                session_key: null,
+                isLoggedIn: false,
+                userInfo: null,
+                isLoading: false,
+            }),
+        );
+
+        // NotificationsService.error(
+        //     'Tài khoản chưa chính xác',
+        //     'Đăng nhập thất bại',
+        // );
+    }
+}
+
+function* saga_Logout() {
+    try {
+        setLocalData('token', null);
+        // NotificationsService.success(
+        //     'Đăng xuất thành công',
+        //     'Tạm biệt',
+        //     'top-center',
+        // );
+
+        yield put(
+            actions.action.resetState()
+        )
+
+        yield put(
+            actions.action.updateState({
+                session_key: null,
+                isLoggedIn: false,
+                userInfo: null,
+                isLoading: false,
+            }),
+        );
+    } catch (ex: any) {
+        console.log('[Auth] Logout Error : ', ex.message);
+    }
+}
+
+function* saga_CheckSessionKey() {
+    try {
+        let _req: Promise<any> = yield APIService.Auth.getUserInfo();
+        let req: any = _req;
+
+        let userInfo = req.data;
+
+        yield put(
+            actions.action.updateState({
+                userInfo,
+                current_user_info: userInfo,
+            }),
+        );
+    } catch (ex: any) {
+        console.log('[Auth] saga_CheckSessionKey error : ', ex.message);
+
+        yield put(
+            actions.action.updateState({
+                session_key: null,
+                isLoggedIn: false,
+                userInfo: null,
+            }),
+        );
+        setLocalData('token', null);
+    }
+}
+
+
+function* listen() {
+    yield takeEvery(actions.type.LOGIN, saga_Login);
+
+    yield takeEvery(actions.type.CHECK_SESSION, saga_CheckSessionKey);
+    yield takeEvery(actions.type.LOGOUT, saga_Logout);
+}
+
+export default function* authSaga() {
+    yield all([fork(listen)]);
+}

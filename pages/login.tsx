@@ -1,9 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import styles from '../styles/Home.module.css';
 
 const Login: NextPage = () => {
+    const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -16,6 +19,7 @@ const Login: NextPage = () => {
             </Head>
 
             <h1>Login Page</h1>
+            <h3>{isLoggedIn ? "True" : "False"}</h3>
         </div>
     );
 };

@@ -64,7 +64,7 @@ export default function handler(
         const post_id = req.query.post_id;
 
         for (let index = 0; index < posts.length; index++) {
-            if (posts[index]._id == 'post_id') {
+            if (posts[index]._id == post_id) {
                 posts[index].num_like = posts[index].num_like + 1;
             }
         }

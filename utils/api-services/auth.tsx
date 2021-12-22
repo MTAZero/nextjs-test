@@ -17,7 +17,7 @@ const login = (uname = '', password = '') => {
 
 const getUserInfo = () => {
     return api.makeAuthRequest({
-        url: 'auth/my-info',
+        url: 'auth/get-info',
         method: 'GET',
         data: {},
     });
