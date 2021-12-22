@@ -22,15 +22,6 @@ const Home: NextPage = () => {
 
             <main className={styles.main}>
                 <h3>Zindousm</h3>
-
-                <button
-                    onClick={() => {
-                        dispatch(actions.AuthActions.logout());
-                    }}
-                >
-                    Đăng xuất
-                </button>
-
             </main>
 
             <footer className={styles.footer}>

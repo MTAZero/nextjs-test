@@ -12,6 +12,24 @@ import styles from '../styles/Home.module.css';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 
+const LayoutMain = (props: any) => {
+    const dispatch = useDispatch();
+    const actions = useActions();
+
+    return (
+        <>
+            <button
+                onClick={() => {
+                    dispatch(actions.AuthActions.logout());
+                }}
+            >
+                Logout
+            </button>
+            {props.children}
+        </>
+    );
+};
+
 function MyApp({ Component, pageProps }: AppProps) {
     const router = useRouter();
     let isRequireLogin = true;
@@ -29,7 +47,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <div className={styles.main}>
                     {isRequireLogin ? (
                         <LoginRequireComponent>
-                            <Component {...pageProps} />
+                            <LayoutMain>
+                                <Component {...pageProps} />
+                            </LayoutMain>
                         </LoginRequireComponent>
                     ) : (
                         <Component {...pageProps} />
