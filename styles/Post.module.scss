@@ -5,11 +5,24 @@
         top: -10px;
         display: block;
     }
+    20% {
+        color: #e23b3b;
+        font-size: 12px;
+        top: -20px;
+        display: block;
+    }
     50% {
         color: #e23b3b;
-        font-size: 14px;
+        font-size: 16px;
         top: -30px;
         display: block;
+    }
+    80% {
+        color: transparent;
+        font-size: 14px;
+        top: -10px;
+        visibility: none;
+        opacity: 0;
     }
     100% {
         top: -10px;
