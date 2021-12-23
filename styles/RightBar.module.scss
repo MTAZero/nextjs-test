@@ -29,9 +29,15 @@
         flex-direction: row;
         padding: 10px;
         cursor: pointer;
+        align-items: center;
+        // align-items: flex-end;
 
         .MenuIcon{
             margin-right: 5px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
 
