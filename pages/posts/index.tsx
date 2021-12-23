@@ -16,7 +16,7 @@ const Post = (props: any) => {
     let [buttonState, setButtonState] = useState('normal');
 
     const renderUserInfo = () => {
-        if (!userInfo) return null
+        if (!userInfo) return null;
         return (
             <div className={styles.userInfo}>
                 <img
@@ -44,7 +44,7 @@ const Post = (props: any) => {
     };
 
     return (
-        <div className={styles.Feed}>
+        <div className={styles.Feed} key={props.index}>
             {renderUserInfo()}
             <div className={styles.FeedContent}>
                 {post.image && (
@@ -96,8 +96,8 @@ const Posts: NextPage = () => {
     }, []);
 
     const renderUserInfo = () => {
-        if (!userInfo) return null
-        
+        if (!userInfo) return null;
+
         return (
             <div className={styles.userInfo}>
                 <img
@@ -162,7 +162,7 @@ const Posts: NextPage = () => {
 
             <div className={styles.ListFeed}>
                 {posts.map((post: any, index: any) => {
-                    return <Post post={post} />;
+                    return <Post index={'post_' + index} post={post} />;
                 })}
             </div>
         </div>

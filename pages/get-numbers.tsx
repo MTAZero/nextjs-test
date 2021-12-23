@@ -16,15 +16,19 @@ const GetNumbers: NextPage = () => {
         dispatch(actions.GlobalActions.getListNumbers());
     }, []);
 
-    const renderNumBlock = (num: any) => {
+    const renderNumBlock = (num: any, index: any = '') => {
         let digits = [];
         for (let index = 0; index < num.length; index++)
             digits.push(num[index]);
 
         return (
-            <div className={styles.NumBlock}>
+            <div className={styles.NumBlock} key={index}>
                 {digits.map((digit: any, index: any) => {
-                    return <div className={styles.Digit}>{digit}</div>;
+                    return (
+                        <div key={'digit' + index} className={styles.Digit}>
+                            {digit}
+                        </div>
+                    );
                 })}
             </div>
         );
@@ -55,7 +59,7 @@ const GetNumbers: NextPage = () => {
                     <div className={styles.BlockContent}>
                         {numbers.firstNum &&
                             numbers.firstNum.map((num: any, index: any) => {
-                                return renderNumBlock(num);
+                                return renderNumBlock(num, 'key1' + index);
                             })}
                     </div>
                 </div>
@@ -65,7 +69,7 @@ const GetNumbers: NextPage = () => {
                     <div className={styles.BlockContent}>
                         {numbers.secondNum &&
                             numbers.secondNum.map((num: any, index: any) => {
-                                return renderNumBlock(num);
+                                return renderNumBlock(num, 'key2' + index);
                             })}
                     </div>
                 </div>
@@ -75,7 +79,7 @@ const GetNumbers: NextPage = () => {
                     <div className={styles.BlockContent}>
                         {numbers.thirdNum &&
                             numbers.thirdNum.map((num: any, index: any) => {
-                                return renderNumBlock(num);
+                                return renderNumBlock(num, 'key3' + index);
                             })}
                     </div>
                 </div>
@@ -85,7 +89,7 @@ const GetNumbers: NextPage = () => {
                     <div className={styles.BlockContent}>
                         {numbers.encourageNum &&
                             numbers.encourageNum.map((num: any, index: any) => {
-                                return renderNumBlock(num);
+                                return renderNumBlock(num, 'key4' + index);
                             })}
                     </div>
                 </div>

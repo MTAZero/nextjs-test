@@ -23,10 +23,7 @@ const Login: NextPage = () => {
         // router.push(returnUrl);
 
         router.push({
-            pathname: returnUrl,
-            query: {
-                returnUrl: router.asPath,
-            },
+            pathname: returnUrl
         });
     }
 
