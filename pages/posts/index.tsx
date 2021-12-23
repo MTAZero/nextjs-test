@@ -44,7 +44,7 @@ const Post = (props: any) => {
     };
 
     return (
-        <div className={styles.Feed} key={props.index}>
+        <div className={styles.Feed}>
             {renderUserInfo()}
             <div className={styles.FeedContent}>
                 {post.image && (
@@ -162,7 +162,7 @@ const Posts: NextPage = () => {
 
             <div className={styles.ListFeed}>
                 {posts.map((post: any, index: any) => {
-                    return <Post index={'post_' + index} post={post} />;
+                    return <Post key={'post_' + index} post={post} />;
                 })}
             </div>
         </div>
