@@ -16,6 +16,7 @@ const Post = (props: any) => {
     let [buttonState, setButtonState] = useState('normal');
 
     const renderUserInfo = () => {
+        if (!userInfo) return null
         return (
             <div className={styles.userInfo}>
                 <img
@@ -95,6 +96,8 @@ const Posts: NextPage = () => {
     }, []);
 
     const renderUserInfo = () => {
+        if (!userInfo) return null
+        
         return (
             <div className={styles.userInfo}>
                 <img
