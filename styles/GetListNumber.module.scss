@@ -1,0 +1,85 @@
+.GetListNumber{
+    // background-color: pink;
+    width: 100%;
+    display: flex;
+
+    .MainTable{
+        max-width: 588px;
+        margin: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      
+        background-color: white;
+        padding: 15px;
+
+        .rowTitle{
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .title{
+                font-weight: bold;
+                font-size: 1rem;
+                line-height: 22px;
+               
+                font-weight: 600;
+                flex: 1;
+            }
+
+            .star{
+                // margin: 10px;
+                font-size: 20px;
+                color: blue;
+                cursor: pointer;
+            }
+        }
+
+        .BlockNumber{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+
+            .BlockTitle{
+                color: black;
+                margin-bottom: 20px;
+                list-style: 15px;
+                display: flex;
+                // font-weight: 500;
+            }
+
+            .BlockContent{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                width: 100%;
+
+                .NumBlock{
+                    width: 50%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    .Digit{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        // font-weight: bold;
+
+                        height: 40px;
+                        width: 40px;
+                        border-radius: 20px;
+                        border: 2px solid red;
+                        margin: 5px;
+                    }
+                }
+
+
+            }
+
+        }
+    }
+}

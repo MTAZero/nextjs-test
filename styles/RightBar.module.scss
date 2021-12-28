@@ -1,0 +1,48 @@
+.RightBar{
+    width: 250px;
+    padding: 100px 15px;
+    background-color: white;
+
+    .userInfo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .userAvatar{
+            height: 46px;
+            width: 46px;
+            border-radius: 23px;
+        }
+
+        .userFullname{
+            color: black;
+            margin-left: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+    }
+
+    .MenuItem{
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        cursor: pointer;
+        align-items: center;
+        // align-items: flex-end;
+
+        .MenuIcon{
+            margin-right: 5px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .MenuItem:hover{
+        background-color: #f2f2f2;
+    }
+
+}

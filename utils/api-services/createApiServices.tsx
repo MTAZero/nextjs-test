@@ -3,7 +3,7 @@ import axios from 'axios';
 import https from 'https';
 import { getSessionKey } from '../storage';
 
-let server = 'localhost:3000/api';
+let server = 'http://localhost:3000/api';
 
 const _makeRequest = (instantAxios: any) => async (args: any) => {
     const _headers = args.headers ? args.headers : {};
@@ -49,9 +49,9 @@ const _makeAuthRequest = (instantAxios: any) => async (args: any) => {
         .then((response: any) => response.data)
         .catch((error: any) => {
             throw {
-                message: error.response.data
-                    ? error.response.data
-                    : error.response,
+                message: error.data
+                    ? error.data
+                    : error,
             };
         });
 };
